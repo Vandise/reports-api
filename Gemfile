@@ -25,8 +25,8 @@ gem 'puma', '~> 3.7'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
+gem 'pg'
 gem 'sorcery', github: 'sorcery/sorcery', ref: '0cda67d692ae1058f0491ec07417708a2f8bac0f'
-
 gem 'google-api-client'
 gem 'multi_json'
 gem 'sidekiq'

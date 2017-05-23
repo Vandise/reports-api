@@ -126,6 +126,7 @@ GEM
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
     os (0.9.6)
+    pg (0.18.4)
     puma (3.8.2)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
@@ -235,6 +236,7 @@ DEPENDENCIES
   google-api-client
   listen (>= 3.0.5, < 3.2)
   multi_json
+  pg
   puma (~> 3.7)
   pundit
   rails (~> 5.1.1)
