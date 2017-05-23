@@ -25,6 +25,17 @@ gem 'puma', '~> 3.7'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
+gem 'sorcery', github: 'sorcery/sorcery', ref: '0cda67d692ae1058f0491ec07417708a2f8bac0f'
+
+gem 'google-api-client'
+gem 'multi_json'
+gem 'sidekiq'
+gem 'sidekiq-unique-jobs'
+gem 'pundit'
+gem 'faraday'
+gem 'typhoeus'
+gem 'rolify'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
