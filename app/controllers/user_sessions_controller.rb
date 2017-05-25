@@ -5,10 +5,10 @@ class UserSessionsController < ApplicationController
 
   def create
     if user = authenticate_user
-      token = 'thisis a fake token until i put one in the db'
-      render json: { token: token }
+      token = ApiKey.for_user!(user.id)
+      render json: { token: token, user: user }
     else
-      render json: {errors: 'login failed'}, status: :unauthorized
+      render json: { errors: 'login failed' }, status: :unauthorized
     end
   end
 

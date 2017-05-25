@@ -4,6 +4,7 @@ global: &GLOBAL
 
 development: &DEV
   <<: *GLOBAL
+  dev_token_timeout: '500'
 
 test: &TEST
   <<: *GLOBAL
