@@ -6,7 +6,7 @@ class UserSessionsController < ApplicationController
   def create
     if user = authenticate_user
       token = 'thisis a fake token until i put one in the db'
-      render json: token
+      render json: { token: token }
     else
       render json: {errors: 'login failed'}, status: :unauthorized
     end
@@ -27,7 +27,6 @@ class UserSessionsController < ApplicationController
     end
     resp = conn.get
     body = JSON.parse(resp.body, symbolize_names: true)
-    logger.debug "\n\n hello world \n\n"
     if valid_google_response?(body)
       User.get_google_user(body)
     end
