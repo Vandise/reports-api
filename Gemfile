@@ -47,6 +47,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rspec-rails', '~> 3.5'
+  gem 'rack-cors', :require => 'rack/cors'
 end
 
 group :test do
