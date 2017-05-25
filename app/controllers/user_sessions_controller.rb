@@ -12,6 +12,12 @@ class UserSessionsController < ApplicationController
     end
   end
 
+  def destroy
+    current_api_key.destroy if current_api_key
+    logout
+    head :no_content
+  end
+
   private
 
   def authenticate_user
