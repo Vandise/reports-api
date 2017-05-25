@@ -5,7 +5,7 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   before_create :normalize_email
 
-  def self.get_google_user(body, company)
+  def self.get_google_user(body)
     if user = find_by(email: body[:email].downcase)
       if !user.first_name && attributes = attributes_from_google(body)
         user.update_attributes(attributes)

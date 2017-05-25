@@ -4,8 +4,12 @@ class UserSessionsController < ApplicationController
   before_action :skip_authorization_and_policy_scope
 
   def create
-    user = authenticate_user
-    render json: {errors: 'login failed'}, status: :unauthorized
+    if user = authenticate_user
+      token = 'thisis a fake token until i put one in the db'
+      render json: token
+    else
+      render json: {errors: 'login failed'}, status: :unauthorized
+    end
   end
 
   private
@@ -23,6 +27,15 @@ class UserSessionsController < ApplicationController
     end
     resp = conn.get
     body = JSON.parse(resp.body, symbolize_names: true)
-    body
+    logger.debug "\n\n hello world \n\n"
+    if valid_google_response?(body)
+      User.get_google_user(body)
+    end
+  end
+
+  def valid_google_response?(body)
+    client_id = config_option('google_application_id')
+    return true if body[:aud] == client_id
+    false
   end
 end

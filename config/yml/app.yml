@@ -1,0 +1,15 @@
+global: &GLOBAL
+  google_application_id: '919251217987-vc3pum35m37q95vs78jtrb1batgc6i0d.apps.googleusercontent.com'
+  google_client_id: '919251217987-vc3pum35m37q95vs78jtrb1batgc6i0d.apps.googleusercontent.com'
+
+development: &DEV
+  <<: *GLOBAL
+
+test: &TEST
+  <<: *GLOBAL
+
+staging: &STAGING
+  <<: *GLOBAL
+
+production: &PROD
+  <<: *GLOBAL

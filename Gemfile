@@ -35,6 +35,7 @@ gem 'pundit'
 gem 'faraday'
 gem 'typhoeus'
 gem 'rolify'
+gem 'tarot'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
