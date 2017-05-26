@@ -21,6 +21,6 @@ class ApplicationController < ActionController::API
   end
 
   def current_api_key
-    @current_api_key ||= ApiKey.active.includes(user: [:company, :roles]).where(access_token: access_token).first
+    @current_api_key ||= ApiKey.active.includes(user: []).where(access_token: access_token).first
   end
 end

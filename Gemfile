@@ -40,6 +40,7 @@ gem 'tarot'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'ffaker'
 end
 
 group :development do
@@ -49,6 +50,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'rspec-rails', '~> 3.5'
   gem 'rack-cors', :require => 'rack/cors'
+  gem 'factory_girl'
 end
 
 group :test do

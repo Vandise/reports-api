@@ -69,6 +69,7 @@ GEM
       i18n (~> 0.5)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
+    ffaker (2.2.0)
     ffi (1.9.18)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
@@ -233,9 +234,11 @@ PLATFORMS
 DEPENDENCIES
   byebug
   database_cleaner
+  factory_girl
   factory_girl_rails (~> 4.0)
   faker
   faraday
+  ffaker
   google-api-client
   listen (>= 3.0.5, < 3.2)
   multi_json
