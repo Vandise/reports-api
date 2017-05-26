@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   def self.get_google_user(body)
     if user = find_by(email: body[:email].downcase)
-      if !user.first_name && attributes = attributes_from_google(body)
+      if !user.first_name || attributes = attributes_from_google(body)
         user.update_attributes(attributes)
       end
     end
@@ -23,7 +23,8 @@ class User < ApplicationRecord
       email: body[:email],
       first_name: body[:given_name],
       last_name: body[:family_name],
-      google_account: true
+      google_account: true,
+      profile_image: body[:picture]
     }
   end
 
