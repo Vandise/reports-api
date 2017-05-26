@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
+  let(:company) { FactoryGirl.build_stubbed(:company, domain: 'company.com') }
+
   describe "password presence validation" do
 
     let(:user) { FactoryGirl.build_stubbed(:user) }
@@ -9,7 +11,7 @@ RSpec.describe User, type: :model do
     context "when the account is a google account" do
       context "when creating" do
         it "does not require a password" do
-          user = User.new(email: 'auniqueemail@company.com', google_account: true)
+          user = User.new(email: 'auniqueemail@company.com', google_account: true, company: company)
           expect(user).to be_valid
         end
       end
@@ -23,7 +25,7 @@ RSpec.describe User, type: :model do
       end
 
       context "when updating" do
-        let(:user) { FactoryGirl.build_stubbed(:user, email: 'blah@company.com', google_account: true) }
+        let(:user) { FactoryGirl.build_stubbed(:user, company: company) }
 
         it "does not require a password" do
           user.password = '123'
@@ -49,23 +51,9 @@ RSpec.describe User, type: :model do
           let!(:user) { FactoryGirl.create(:user, email: 'test@company.com', first_name: 'test', last_name: 'test') }
 
           it "updates the attributes" do
-            expect(user.first_name).to eq('test')
-            expect(user.last_name).to eq('test')
-            user = User.get_google_user(body)
+            user = User.get_google_user(body, company)
             expect(user.first_name).to_not be_nil
             expect(user.last_name).to_not be_nil
-          end
-        end
-
-        context "and their attributes have been set" do
-          let!(:user) { FactoryGirl.create(:user, email: 'test@company.com') }
-
-          it "does nothing" do
-            first_name = user.first_name
-            last_name = user.last_name
-            user = User.get_google_user(body)
-            expect(user.first_name).to eq(first_name)
-            expect(user.last_name).to eq(last_name)
           end
         end
       end

@@ -9,8 +9,8 @@ describe UserSessionsController, type: :controller do
     context "when a google id token is sent" do
       let(:google_response) do
         {
-          email: 'test@mashable.com',
-          hd: 'mashable.com',
+          email: 'test@localhost',
+          hd: 'localhost',
           picture: nil,
           given_name: 'tester',
           family_name: 'test',
@@ -20,12 +20,13 @@ describe UserSessionsController, type: :controller do
       let(:response_double) { double(:response, body: JSON.unparse(google_response)) }
 
       before do
-        FactoryGirl.create(:user, email: 'test@mashable.com')
+        company = FactoryGirl.create(:company, name: 'localhost', domain: 'localhost')
+        FactoryGirl.create(:user, email: 'test@localhost', company: company)
         expect_any_instance_of(Faraday::Connection).to receive(:get).and_return(response_double)
       end
 
       it "authenticates from google" do
-        post :create, params: { email: 'test@mashable.com', token: 'some token' }
+        post :create, params: { email: 'test@localhost', token: 'some token' }
         expect(response).to be_success
       end
     end

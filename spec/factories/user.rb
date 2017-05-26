@@ -4,5 +4,6 @@ FactoryGirl.define do
     last_name { FFaker::Name.last_name }
     email { FFaker::Internet.email }
     password 'password'
+    company
   end
 end

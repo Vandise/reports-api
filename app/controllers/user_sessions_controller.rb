@@ -34,13 +34,14 @@ class UserSessionsController < ApplicationController
     resp = conn.get
     body = JSON.parse(resp.body, symbolize_names: true)
     if valid_google_response?(body)
-      User.get_google_user(body)
+      User.get_google_user(body, @company)
     end
   end
 
   def valid_google_response?(body)
     client_id = config_option('google_application_id')
-    return true if body[:aud] == client_id
+    @company = Company.find_by_domain(body[:hd])
+    return true if body[:aud] == client_id && @company
     false
   end
 end
